@@ -10,27 +10,29 @@ namespace Merkeleon\PhpCryptocurrencyAddressValidation\Utils;
 
 class CashAddress
 {
-    const ALPHABET              = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-    const CHARSET               = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
-    const ALPHABET_MAP          = ["1" => 0, "2" => 1, "3" => 2, "4" => 3, "5" => 4, "6" => 5, "7" => 6,
-                                   "8" => 7, "9" => 8, "A" => 9, "B" => 10, "C" => 11, "D" => 12, "E" => 13, "F" => 14, "G" => 15,
-                                   "H" => 16, "J" => 17, "K" => 18, "L" => 19, "M" => 20, "N" => 21, "P" => 22, "Q" => 23, "R" => 24,
-                                   "S" => 25, "T" => 26, "U" => 27, "V" => 28, "W" => 29, "X" => 30, "Y" => 31, "Z" => 32, "a" => 33,
-                                   "b" => 34, "c" => 35, "d" => 36, "e" => 37, "f" => 38, "g" => 39, "h" => 40, "i" => 41, "j" => 42,
-                                   "k" => 43, "m" => 44, "n" => 45, "o" => 46, "p" => 47, "q" => 48, "r" => 49, "s" => 50, "t" => 51,
-                                   "u" => 52, "v" => 53, "w" => 54, "x" => 55, "y" => 56, "z" => 57];
-    const BECH_ALPHABET         = ["q" => 0, "p" => 1,
-                                   "z" => 2, "r" => 3, "y" => 4, "9" => 5, "x" => 6, "8" => 7,
-                                   "g" => 8, "f" => 9, "2" => 10, "t" => 11, "v" => 12, "d" => 13,
-                                   "w" => 14, "0" => 15, "s" => 16, "3" => 17, "j" => 18, "n" => 19,
-                                   "5" => 20, "4" => 21, "k" => 22, "h" => 23, "c" => 24, "e" => 25,
-                                   "6" => 26, "m" => 27, "u" => 28, "a" => 29, "7" => 30, "l" => 31];
-    const EXPAND_PREFIX         = [2, 9, 20, 3, 15, 9, 14, 3, 1, 19, 8, 0];
-    const EXPAND_PREFIX_TESTNET = [2, 3, 8, 20, 5, 19, 20, 0];
-    const BASE16                = ["0" => 0, "1" => 1, "2" => 2, "3" => 3,
-                                   "4" => 4, "5" => 5, "6" => 6, "7" => 7,
-                                   "8" => 8, "9" => 9, "a" => 10, "b" => 11,
-                                   "c" => 12, "d" => 13, "e" => 14, "f" => 15];
+    const ALPHABET                  = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    const CHARSET                   = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
+    const ALPHABET_MAP              = ["1" => 0, "2" => 1, "3" => 2, "4" => 3, "5" => 4, "6" => 5, "7" => 6,
+                                       "8" => 7, "9" => 8, "A" => 9, "B" => 10, "C" => 11, "D" => 12, "E" => 13, "F" => 14, "G" => 15,
+                                       "H" => 16, "J" => 17, "K" => 18, "L" => 19, "M" => 20, "N" => 21, "P" => 22, "Q" => 23, "R" => 24,
+                                       "S" => 25, "T" => 26, "U" => 27, "V" => 28, "W" => 29, "X" => 30, "Y" => 31, "Z" => 32, "a" => 33,
+                                       "b" => 34, "c" => 35, "d" => 36, "e" => 37, "f" => 38, "g" => 39, "h" => 40, "i" => 41, "j" => 42,
+                                       "k" => 43, "m" => 44, "n" => 45, "o" => 46, "p" => 47, "q" => 48, "r" => 49, "s" => 50, "t" => 51,
+                                       "u" => 52, "v" => 53, "w" => 54, "x" => 55, "y" => 56, "z" => 57];
+    const BECH_ALPHABET             = ["q" => 0, "p" => 1,
+                                       "z" => 2, "r" => 3, "y" => 4, "9" => 5, "x" => 6, "8" => 7,
+                                       "g" => 8, "f" => 9, "2" => 10, "t" => 11, "v" => 12, "d" => 13,
+                                       "w" => 14, "0" => 15, "s" => 16, "3" => 17, "j" => 18, "n" => 19,
+                                       "5" => 20, "4" => 21, "k" => 22, "h" => 23, "c" => 24, "e" => 25,
+                                       "6" => 26, "m" => 27, "u" => 28, "a" => 29, "7" => 30, "l" => 31];
+    const EXPAND_PREFIX             = [2, 9, 20, 3, 15, 9, 14, 3, 1, 19, 8, 0];
+    const EXPAND_PREFIX_SLP         = [19, 9, 13, 16, 12, 5, 12, 5, 4, 7, 5, 18, 0];
+    const EXPAND_PREFIX_SLP_TESTNET = [19, 12, 16, 20, 5, 19, 20, 0];
+    const EXPAND_PREFIX_TESTNET     = [2, 3, 8, 20, 5, 19, 20, 0];
+    const BASE16                    = ["0" => 0, "1" => 1, "2" => 2, "3" => 3,
+                                       "4" => 4, "5" => 5, "6" => 6, "7" => 7,
+                                       "8" => 8, "9" => 9, "a" => 10, "b" => 11,
+                                       "c" => 12, "d" => 13, "e" => 14, "f" => 15];
 
     public function __construct()
     {
@@ -299,6 +301,18 @@ class CashAddress
         {
             $afterPrefix            = 8;
             $data                   = self::EXPAND_PREFIX_TESTNET;
+            $isTestnetAddressResult = true;
+        }
+        else if (substr($inputNew, 0, 13) === "simpleledger:")
+        {
+            $afterPrefix            = 13;
+            $data                   = self::EXPAND_PREFIX_SLP;
+            $isTestnetAddressResult = false;
+        }
+        else if (substr($inputNew, 0, 8) === "slptest:")
+        {
+            $afterPrefix            = 8;
+            $data                   = self::EXPAND_PREFIX_SLP_TESTNET;
             $isTestnetAddressResult = true;
         }
         else
