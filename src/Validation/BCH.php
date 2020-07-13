@@ -4,6 +4,7 @@ namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
 
 use Merkeleon\PhpCryptocurrencyAddressValidation\Base58Validation;
 use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\CashAddress;
+use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\CashAddressException;
 
 class BCH extends Base58Validation
 {
@@ -15,15 +16,13 @@ class BCH extends Base58Validation
 
     public function validate($address)
     {
-        $address = (string)$address;
-        try
-        {
-            $legacy = CashAddress::new2old($address);
+        try {
+            $testnet = false;
+            $decoded = CashAddress::decodeNewAddr($address, true, $testnet);
+
+            return is_array($decoded);
+        } catch (CashAddressException $exception) {
+            return parent::validate($address);
         }
-        catch (\Exception $ex)
-        {
-            $legacy = $address;
-        }
-        return parent::validate($legacy);
     }
 }
