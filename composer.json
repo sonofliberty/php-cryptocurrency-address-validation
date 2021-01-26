@@ -1,10 +1,14 @@
 {
-    "name": "merkeleon/php-cryptocurrency-address-validation",
+    "name": "sonofliberty/php-cryptocurrency-address-validation",
     "description": "Cryptocurrency address validation. Currently supports litecoin and bitcoin.",
     "authors": [
         {
             "name": "Andrey Murashkin",
             "email": "andrey@phpteam.pro"
+        },
+        {
+            "name": "Alex Winter",
+            "email": "hi@alexwinter.me"
         }
     ],
     "require": {},
